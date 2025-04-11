@@ -1,4 +1,5 @@
 ﻿using CitizenFX.Core;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace PolyZoneLib.Client
         private readonly float Ceiling;
         private readonly float Floor;
         private readonly Color Color;
+        private bool isInside = false;
 
         internal PolyZone(Vector2[] points, float floor, float ceiling, Color color)
         {
@@ -18,6 +20,43 @@ namespace PolyZoneLib.Client
             Floor = floor;
             Ceiling = ceiling;
             Color = color;
+        }
+
+        private bool IsPointInPolygon(Vector2 point)
+        {
+            bool inside = false;
+            int j = Points.Count - 1;
+
+            for (int i = 0; i < Points.Count; j = i++)
+            {
+                if ((Points[i].Y > point.Y) != (Points[j].Y > point.Y) &&
+                    point.X < (Points[j].X - Points[i].X) * (point.Y - Points[i].Y) / (Points[j].Y - Points[i].Y) + Points[i].X)
+                {
+                    inside = !inside;
+                }
+            }
+
+            return inside;
+        }
+
+        internal async Task IsPlayerInside(Action onEnterAction)
+        {
+            Vector3 playerPos = Game.PlayerPed.Position;
+            Vector2 player2D = new Vector2(playerPos.X, playerPos.Y);
+
+            bool currentlyInside = playerPos.Z >= Floor && playerPos.Z <= Ceiling && IsPointInPolygon(player2D);
+
+            if (currentlyInside && !isInside)
+            {
+                isInside = true;
+                onEnterAction.Invoke();
+            }
+            else if (!currentlyInside && isInside)
+            {
+                isInside = false;
+            }
+
+            await Task.FromResult(0);
         }
 
         internal async Task Draw()
