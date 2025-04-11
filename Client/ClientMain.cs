@@ -1,23 +1,20 @@
-using System;
-using System.Threading.Tasks;
 using CitizenFX.Core;
-using static CitizenFX.Core.Native.API;
 
-namespace PolygonLib.Client
+namespace PolyZoneLib.Client
 {
-    public class ClientMain : BaseScript
+    internal class ClientMain : BaseScript
     {
         public ClientMain()
         {
-            Debug.WriteLine("Hi from PolygonLib.Client!");
-        }
+            Debug.WriteLine("Hi from PolyZoneLib.Client!");
 
-        [Tick]
-        public Task OnTick()
-        {
-            DrawRect(0.5f, 0.5f, 0.5f, 0.5f, 255, 255, 255, 150);
-
-            return Task.FromResult(0);
+            new PolyZone(new Vector2[]
+            {
+                new Vector2(0, 0),
+                new Vector2(1, 0),
+                new Vector2(1, 1),
+                new Vector2(0, 1)
+            });
         }
     }
 }

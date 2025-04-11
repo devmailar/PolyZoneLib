@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{2CB42F12-E813-91B3-7D11-3220E40BEF4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolygonLib.Client", "Client\PolygonLib.Client.csproj", "{5702A8A1-5660-4398-934F-AEFB06E5BB01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyZoneLib.Client", "Client\PolyZoneLib.Client.csproj", "{5702A8A1-5660-4398-934F-AEFB06E5BB01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,4 +36,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5702A8A1-5660-4398-934F-AEFB06E5BB01} = {2CB42F12-E813-91B3-7D11-3220E40BEF4A}
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AEAB3B6D-17D2-4540-AC6E-C6B22216CB8C}
+	EndGlobalSection
 EndGlobal
+
